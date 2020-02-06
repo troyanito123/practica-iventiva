@@ -1,5 +1,15 @@
 class SessionsController < ApplicationController
-  # skip before action ()
+  # con esto defininos middlewares
+
+  skip_before_action :logged_in_user, only: [:new, :create]
+  before_action :user_invited, only: [:new, :create]
+
+  def user_invited
+    if logged_in?
+      redirect_to home_url
+    end
+  end
+
   def new
 
   end

@@ -4,9 +4,12 @@ class ApplicationController < ActionController::Base
   # before actions check current user
   include SessionsHelper
 
-  #def metodo
-  #  if !logged_in?
-  #    # redirigir
-  #  end
-  #end
+  before_action :logged_in_user
+
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+  end
 end
