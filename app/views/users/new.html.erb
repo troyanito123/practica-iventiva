@@ -1,4 +1,9 @@
 <h1>Registro</h1>
+
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
+
 <hr>
 <%= form_for @user, url: register_path, method: 'post' do |f| %>
   <div>

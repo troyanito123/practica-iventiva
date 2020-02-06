@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash.now[:success] = 'Ingresa tus datos para poder acceder!'
       redirect_to login_path
     else
       render 'new'
