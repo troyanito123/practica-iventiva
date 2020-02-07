@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to home_path
+      redirect_to articles_path
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
 
-    redirect_to home_path
+    redirect_to articles_path
   end
 
   private

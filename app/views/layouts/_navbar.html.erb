@@ -23,7 +23,7 @@
             <%= current_user.name %>
           </a>
           <div class="dropdown-menu mr-5">
-            <p class="dropdown-item"> <%= current_user.email %> </p>
+            <p class="dropdown-item"> <%= link_to 'Perfil', edit_user_path(current_user) %> </p>
             <div class="dropdown-divider"></div>
             <%= link_to 'Logout',  logout_path, method: :delete, class: 'dropdown-item' %>
           </div>
