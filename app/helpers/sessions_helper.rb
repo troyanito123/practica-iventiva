@@ -38,5 +38,11 @@ module SessionsHelper
     @current_user = nil
   end
 
+  def user_invited
+    if logged_in?
+      redirect_to home_url
+    end
+  end
+
 
 end

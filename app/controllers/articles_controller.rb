@@ -1,13 +1,15 @@
 class ArticlesController < ApplicationController
 
   skip_before_action :logged_in_user, only: [:index, :show]
+  before_action :article_set, only:[:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def index
     @articles = Article.all
   end
 
   def show
-    @article = Article.find(params[:id])
+    @comments = @article.comments
   end
 
   def new
@@ -19,7 +21,7 @@ class ArticlesController < ApplicationController
     @article.user = current_user
 
     if @article.save
-      flash[:sucess] = 'Se ha creado exitosamente'
+      flash[:success] = I18n.t 'article_crated'
       redirect_to articles_path
     else
       render :new
@@ -27,13 +29,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
-
     if @article.update(article_params)
+      flash[:success] = I18n.t 'article_updated'
       redirect_to articles_path
     else
       render :edit
@@ -41,9 +41,8 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
-
+    flash[:danger] = I18n.t 'article_deleted'
     redirect_to articles_path
   end
 
@@ -51,4 +50,15 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :text)
   end
+
+  private
+  def article_set
+    @article = Article.find(params[:id])
+  end
+
+  private
+  def handle_record_not_found
+    redirect_to articles_path
+  end
+
 end

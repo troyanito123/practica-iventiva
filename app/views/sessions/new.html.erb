@@ -3,18 +3,11 @@
     <div class="bg-white shadow p-5 mb-5">
       <h1 class="text-center">Login</h1>
       <hr>
-
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %> " role="alert">
-          <%= message %>
-        </div>
-      <% end %>
-
       <%= form_for :session, url: login_path, method: 'post' do |f| %>
 
         <div class="form-group">
           <%= f.label 'Email:' %>
-          <%= f.email_field :email, class: 'form-control shadow-sm border-0 bg-light' %>
+          <%= f.email_field :email, :autofocus => true, class: 'form-control shadow-sm border-0 bg-light' %>
         </div>
 
         <div class="form-group">

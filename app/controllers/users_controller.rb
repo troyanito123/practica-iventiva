@@ -4,12 +4,6 @@ class UsersController < ApplicationController
 
   before_action :user_invited, only: [:new, :create]
 
-  def user_invited
-    if logged_in?
-      redirect_to home_url
-    end
-  end
-
   def new
     @user = User.new
   end
@@ -17,7 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash.now[:success] = 'Ingresa tus datos para poder acceder!'
+      flash[:success] = I18n.t 'login_success'
       redirect_to login_path
     else
       render 'new'

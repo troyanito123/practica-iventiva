@@ -34,3 +34,13 @@ en:
   messages:
     errors:
       title_not_blank: 'Titulo no puede ser blanco'
+
+  login_error: "Email or password incorrect"
+  login_success: "Great! now use your credential for login!"
+
+  article_crated: "Article successfully created"
+  article_updated: "Article successfully updated"
+  article_deleted: "Article successfully deleted"
+
+  comment_created: "Comment has be send"
+  comment_deleted: "Comment has be deleted"

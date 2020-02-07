@@ -4,12 +4,6 @@ class SessionsController < ApplicationController
   skip_before_action :logged_in_user, only: [:new, :create]
   before_action :user_invited, only: [:new, :create]
 
-  def user_invited
-    if logged_in?
-      redirect_to home_url
-    end
-  end
-
   def new
 
   end
@@ -21,13 +15,13 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to home_path
     else
-      flash.now[:danger] = 'Email o password incorrectos'
+      flash[:danger] = I18n.t 'login_error'
       render 'new'
     end
   end
 
   def destroy
-    log_out if logged_in?
+    log_out
     redirect_to login_path
   end
 

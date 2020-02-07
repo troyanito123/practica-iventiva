@@ -7,7 +7,7 @@
       <%= form_for(@article, local: true ) do |f| %>
         <div class="form-group">
           <%= f.label 'Title:' %>
-          <%= f.text_field :title, class: 'form-control shadow-sm border-0 bg-light' %>
+          <%= f.text_field :title, :autofocus => true, class: 'form-control shadow-sm border-0 bg-light' %>
           <small class="text-danger">
             <%= @article.errors.messages[:title].first%>
           </small>

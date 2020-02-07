@@ -4,12 +4,6 @@
       <div class="bg-white shadow p-5 mb-5">
         <h1 class="text-center">Articles List</h1>
 
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %> " role="alert">
-            <%= message %>
-          </div>
-        <% end %>
-
         <table class="table">
           <thead>
           <th>Title</th>
@@ -38,6 +32,7 @@
           <% end %>
           </tbody>
         </table>
+
       </div>
     </div>
   </div>
