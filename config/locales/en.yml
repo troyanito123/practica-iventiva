@@ -44,3 +44,5 @@ en:
 
   comment_created: "Comment has be send"
   comment_deleted: "Comment has be deleted"
+
+  not_current_user: "Only edit your own data!"
