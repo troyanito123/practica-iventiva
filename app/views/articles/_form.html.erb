@@ -1,24 +1,39 @@
-<div>
-  <h1> <%= title %> </h1>
+<div class="row mt-5">
+  <div class="col-12 col-sm-10 col-lg-8 mx-auto">
+    <div class="bg-white shadow p-5 mb-5">
+      <h1 class="text-center"> <%= title %> </h1>
+      <hr>
 
-  <%= form_for(@article, local: true ) do |f| %>
-    <div>
-      <%= f.label 'Title:' %>
-      <%= f.text_field :title %>
-      <small class="text-danger">
-        <%= @article.errors.messages[:title].first%>
-      </small>
+      <%= form_for(@article, local: true ) do |f| %>
+        <div class="form-group">
+          <%= f.label 'Title:' %>
+          <%= f.text_field :title, class: 'form-control shadow-sm border-0 bg-light' %>
+          <small class="text-danger">
+            <%= @article.errors.messages[:title].first%>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <%= f.label 'Content:' %>
+          <%= f.text_area :text, class: 'form-control shadow-sm border-0 bg-light' %>
+          <small class="text-danger">
+            <%= @article.errors.messages[:text].first%>
+          </small>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <%= f.submit btnTxt, class: 'btn btn-primary btn-block btn-large' %>
+          </div>
+
+          <div class="col">
+            <%= link_to 'Back', articles_path, class: 'btn btn-secondary btn-block' %>
+          </div>
+        </div>
+
+      <% end %>
+
     </div>
-
-    <div>
-      <%= f.label 'Content:' %>
-      <%= f.text_area :text %>
-      <small class="text-danger">
-        <%= @article.errors.messages[:text].first%>
-      </small>
-    </div>
-
-    <%= f.submit btnTxt %>
-  <% end %>
-
+  </div>
 </div>
+

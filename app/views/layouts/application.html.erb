@@ -9,8 +9,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="bg-ligth">
     <%= render 'layouts/navbar' %>
-    <%= yield %>
+    <div class="mt-3">
+      <%= yield %>
+    </div>
+
   </body>
 </html>

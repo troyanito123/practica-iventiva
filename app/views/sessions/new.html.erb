@@ -1,29 +1,37 @@
-<h1>Login</h1>
+<div class="row mt-5">
+  <div class="col-12 col-sm-10 col-lg-8 mx-auto">
+    <div class="bg-white shadow p-5">
+      <h1 class="text-center">Login</h1>
+      <hr>
 
-<% flash.each do |message_type, message| %>
-  <p> <%= message %></p>
-<% end %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %> " role="alert">
+          <%= message %>
+        </div>
+      <% end %>
 
-<%= form_for :session, url: login_path, method: 'post' do |f| %>
+      <%= form_for :session, url: login_path, method: 'post' do |f| %>
 
-  <div>
-    <%= f.label 'Email:' %>
-    <%= f.email_field :email %>
+        <div class="form-group">
+          <%= f.label 'Email:' %>
+          <%= f.email_field :email, class: 'form-control shadow-sm border-0 bg-light' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label 'Password:' %>
+          <%= f.password_field :password, class: 'form-control shadow-sm border-0 bg-light' %>
+        </div>
+
+        <div class="form-group form-check">
+          <%= f.label :Recuerdame, class: "form-check-label" do %>
+            <%= f.check_box :remember_me, class: 'form-check-input' %>
+            <span class="text-muted">Remember me in this computer</span>
+          <% end %>
+        </div>
+
+        <%= f.submit 'Entrar', class: 'btn btn-primary btn-block btn-large' %>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label 'Password:' %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div>
-    <%= f.label :Recuerdame, class: "checkbox inline" do %>
-      <%= f.check_box :remember_me %>
-      <span>Remember me in this computer</span>
-  </div>
-
-  <%= f.submit 'Entrar' %>
-<% end %>
-
-
-<% end %>
+</div>

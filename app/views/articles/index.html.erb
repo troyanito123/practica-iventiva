@@ -1,37 +1,42 @@
 <div class="container">
-  <h1>Articles List</h1>
+  <div class="row mt-5">
+    <div class="col-12 col-sm-10 col-lg-10 mx-auto">
+      <div class="bg-white shadow p-5 mb-5">
+        <h1 class="text-center">Articles List</h1>
 
-  <% flash.each do |message_type, message| %>
-    <p> <%= message %> </p>
-  <% end %>
+        <% flash.each do |message_type, message| %>
+          <p> <%= message %> </p>
+        <% end %>
 
-  <table>
-    <thead>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Created by</th>
-    <th>Options</th>
-    </thead>
-    <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td> <%= article.title %> </td>
-        <td> <%= article.text %> </td>
-        <td> <%= article.user.name %> </td>
-        <td>
-          <%= link_to 'Show', '#' %>
-          <% if logged_in? %>
-            <% if current_user.id == article.user.id %>
-              <%= link_to 'Edit', edit_article_path(article) %>
-              <%= link_to 'Delete', article_path(article),
-                          method: :delete,
-                          data: { confirm: 'Are you destroy this article?' }  %>
-            <% end %>
+        <table class="table">
+          <thead>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Created by</th>
+          <th>Options</th>
+          </thead>
+          <tbody>
+          <% @articles.each do |article| %>
+            <tr>
+              <td> <%= article.title %> </td>
+              <td> <%= article.text %> </td>
+              <td> <%= article.user.name %> </td>
+              <td>
+                <%= link_to 'Show', '#' %>
+                <% if logged_in? %>
+                  <% if current_user.id == article.user.id %>
+                    <%= link_to 'Edit', edit_article_path(article) %>
+                    <%= link_to 'Delete', article_path(article),
+                                method: :delete,
+                                data: { confirm: 'Are you destroy this article?' }  %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
