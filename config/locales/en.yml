@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  messages:
+    errors:
+      title_not_blank: 'Titulo no puede ser blanco'

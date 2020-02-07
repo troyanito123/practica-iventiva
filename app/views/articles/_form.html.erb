@@ -1,0 +1,24 @@
+<div>
+  <h1> <%= title %> </h1>
+
+  <%= form_for(@article, local: true ) do |f| %>
+    <div>
+      <%= f.label 'Title:' %>
+      <%= f.text_field :title %>
+      <small class="text-danger">
+        <%= @article.errors.messages[:title].first%>
+      </small>
+    </div>
+
+    <div>
+      <%= f.label 'Content:' %>
+      <%= f.text_area :text %>
+      <small class="text-danger">
+        <%= @article.errors.messages[:text].first%>
+      </small>
+    </div>
+
+    <%= f.submit btnTxt %>
+  <% end %>
+
+</div>

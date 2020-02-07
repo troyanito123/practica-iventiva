@@ -5,18 +5,25 @@
     </li>
 
     <li>
+      <%= link_to 'New Article',  new_article_path%>
+    </li>
+
+    <li>
       <%= link_to current_user.name,  '#'%>
     </li>
 
     <li>
-      <%= link_to 'Salir',  logout_path, method: :delete %>
+      <%= link_to 'Logout',  logout_path, method: :delete %>
     </li>
   <% else %>
     <li>
       <%= link_to 'Login',  login_path%>
     </li>
     <li>
-      <%= link_to 'Registro',  register_path%>
+      <%= link_to 'Register',  register_path%>
     </li>
   <% end %>
+  <li>
+    <%= link_to 'Article List',  articles_path%>
+  </li>
 </ul>
