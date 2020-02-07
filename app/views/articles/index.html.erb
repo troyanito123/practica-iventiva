@@ -5,7 +5,9 @@
         <h1 class="text-center">Articles List</h1>
 
         <% flash.each do |message_type, message| %>
-          <p> <%= message %> </p>
+          <div class="alert alert-<%= message_type %> " role="alert">
+            <%= message %>
+          </div>
         <% end %>
 
         <table class="table">

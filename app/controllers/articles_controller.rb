@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-  skip_before_action :logged_in_user, only: [:index]
+  skip_before_action :logged_in_user, only: [:index, :show]
 
   def index
     @articles = Article.all
@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
     @article.user = current_user
 
     if @article.save
-      flash[:notice] = 'Se ha creado exitosamente'
+      flash[:sucess] = 'Se ha creado exitosamente'
       redirect_to articles_path
     else
       render :new
