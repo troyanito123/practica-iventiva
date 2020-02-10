@@ -47,3 +47,4 @@ en:
 
   not_current_user: "Only edit your own data!"
   user_update: "User updated!"
+  user_delete: "User has been deleted"

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'register', to: 'users#new'
   post 'register', to: 'users#create'
+  get 'users', to: 'users#index'
+  delete 'users/:id', to: 'users#destroy', as: 'user_delete'
 
   get 'profile/:id/edit', to: 'users#edit', as: 'edit_user'
   put 'profile/:id', to: 'users#update', as: 'user'

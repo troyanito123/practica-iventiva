@@ -18,6 +18,20 @@
             <%= @user.errors.messages[:email].first%>
           </small>
         </div>
+
+        <% if logged_in? %>
+          <div class="form-group">
+            <%= f.label 'Role:' %>
+            <% @roles.each do |role| %>
+              <div class="form-check">
+                <%= f.radio_button :role, role.id, class: 'form-check-input',
+                                   checked: !@user.role.nil? ? @user.role.id == role.id : false %>
+                <%= f.label :role, role.name, class: 'form-check-label' %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
         <div class="form-group">
           <%= f.label 'Password:' %>
           <%= f.password_field :password, class: 'form-control shadow-sm border-0 bg-light' %>
@@ -37,7 +51,7 @@
             <%= f.submit 'Save changes', class: 'btn btn-primary btn-block' %>
           </div>
           <div class="col">
-            <%= link_to 'Cancel', home_path , class: 'btn btn-secondary btn-block' %>
+            <%= link_to 'Cancel', users_path , class: 'btn btn-secondary btn-block' %>
           </div>
         </div>
 

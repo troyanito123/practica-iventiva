@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 col-sm-10 col-lg-10 mx-auto">
+      <div class="bg-white shadow p-5 mb-5">
+        <h1 class="text-center">Users List</h1>
+
+        <table class="table">
+          <thead>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Options</th>
+          </thead>
+          <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td> <%= user.name %> </td>
+              <td> <%= user.email %> </td>
+              <% if user.role %>
+                <td> <%= user.role.name %> </td>
+              <% else %>
+                <td>No assigned role</td>
+              <% end %>
+
+              <td>
+                <%= link_to 'Edit', edit_user_path(user) %>
+                <%= link_to 'Delete', user_delete_path(user),
+                            method: :delete,
+                            data: { confirm: 'Are you destroy this user?' }  %>
+
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
