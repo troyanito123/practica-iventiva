@@ -5,13 +5,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
+  # before_action -> { authorize @user, User }
+
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if @user.save(context: :create)
       flash[:success] = I18n.t 'login_success'
       redirect_to login_path
     else
@@ -23,8 +25,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to home_path
+    @user.assign_attributes user_params
+    if @user.save
+      flash[:success] = I18n.t 'user_update'
+      redirect_to root_path
     else
       render :edit
     end

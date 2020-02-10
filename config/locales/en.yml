@@ -46,3 +46,4 @@ en:
   comment_deleted: "Comment has be deleted"
 
   not_current_user: "Only edit your own data!"
+  user_update: "User updated!"

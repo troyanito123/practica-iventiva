@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'sessions#new'
+  root 'articles#index'
 
   get 'register', to: 'users#new'
   post 'register', to: 'users#create'
