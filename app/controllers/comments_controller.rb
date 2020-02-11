@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
-  before_action :article_set, only:[:create, :destroy]
-  before_action :comment_set, only:[:destroy]
+  before_action :article_set, only:[:create, :destroy, :edit, :update]
+  before_action :comment_set, only:[:destroy, :edit, :update]
   before_action -> { authorize @comment || Comment }
 
   def create
@@ -11,9 +11,24 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:success] = I18n.t 'comment_created'
-      redirect_to article_path(params[:article_id])
+      redirect_to article_path @article
     else
       redirect_to articles_path
+    end
+  end
+
+  def edit
+    puts("ARTICULO: #{@article}")
+  end
+
+  def update
+    @comment.assign_attributes comment_params
+    if @comment.save
+      flash[:success] = I18n.t 'comment_updated'
+      redirect_to @article
+    else
+      flash[:danger] = I18n.t 'comment_error'
+      redirect_to @article
     end
   end
 
@@ -25,7 +40,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:comment, :article_id)
+    params.require(:comment).permit(:comment)
   end
 
   private
@@ -34,7 +49,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_set
-    @comment = @article.comments.find(params[:id])
-    puts("OBJETO COMMENT: #{@comment }")
+    @comment = Comment.find(params[:id])
   end
 end

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 col-sm-10 col-lg-8 mx-auto mb-5">
+      <div class="bg-white shadow py-3 px-5">
+        <h1 class="text-center">Edit article</h1>
+        <%= form_for([@article, @comment]) do |f| %>
+
+          <div class="form-group">
+            <%= f.label 'What do you think about this article?' %>
+            <%= f.text_area :comment, class: 'form-control bg-light shadow-sm border-0' %>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+            </div>
+            <div class="col">
+              <%= link_to 'Cancel', article_path(@article) , class: 'btn btn-secondary btn-block' %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

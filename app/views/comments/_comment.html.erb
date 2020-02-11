@@ -1,13 +1,14 @@
-
 <div class="bg-light px-3 py-1 mx-2 shadow mt-4">
   <strong class="mb-0"> <%= comment.user.name %> say: </strong>
   <p class="mb-0"> <%= comment.comment %> </p>
   <% if logged_in? %>
-    <% if current_user.admin? || current_user == comment.user%>
+    <% if current_user.admin? || current_user == comment.user %>
       <p class="text-right">
+        <%= link_to 'Edit', edit_article_comment_path(comment.article, comment) %>
+
         <%= link_to 'Delete', [comment.article, comment],
                     method: :delete,
-                    data: { confirm: 'Are you destroy this comment?' }  %>
+                    data: {confirm: 'Are you destroy this comment?'} %>
       </p>
     <% end %>
   <% end %>

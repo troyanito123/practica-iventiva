@@ -45,6 +45,8 @@ en:
 
   comment_created: "Comment has be send"
   comment_deleted: "Comment has be deleted"
+  comment_updated: "Comment has be updated"
+  comment_error: "Oups! ... "
 
   not_current_user: "Only edit your own data!"
   user_update: "User updated!"

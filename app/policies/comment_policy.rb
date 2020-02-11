@@ -6,4 +6,12 @@ class CommentPolicy < ApplicationPolicy
   def destroy?
     user.admin? || user == record.user
   end
+
+  def edit?
+    destroy?
+  end
+
+  def update?
+    destroy?
+  end
 end
