@@ -4,7 +4,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    # user.admin? || user == record.user
-    # puts("QUE HAY EN EL RECORD: #{record.inspect}")
+    user.admin? || user == record.user
   end
 end
