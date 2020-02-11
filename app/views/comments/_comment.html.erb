@@ -3,7 +3,7 @@
   <strong class="mb-0"> <%= comment.user.name %> say: </strong>
   <p class="mb-0"> <%= comment.comment %> </p>
   <% if logged_in? %>
-    <% if comment.user.id == current_user.id %>
+    <% if current_user.admin? || current_user == comment.user%>
       <p class="text-right">
         <%= link_to 'Delete', [comment.article, comment],
                     method: :delete,

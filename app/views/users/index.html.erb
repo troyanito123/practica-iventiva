@@ -23,7 +23,7 @@
               <% end %>
 
               <td>
-                <%= link_to 'Edit', edit_user_path(user) %>
+                <%= link_to 'Edit', edit_user_path(user) if policy(user).edit? %>
                 <%= link_to 'Delete', user_delete_path(user),
                             method: :delete,
                             data: { confirm: 'Are you destroy this user?' }  %>

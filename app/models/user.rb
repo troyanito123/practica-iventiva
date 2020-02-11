@@ -46,10 +46,10 @@ class User < ApplicationRecord
   end
 
   def admin?
-    # role.code == :admin
+    role.code == 'ADMIN'
   end
 
   def normal_user?
-    # role.code :normal_user
+    role.code == 'USER'
   end
 end

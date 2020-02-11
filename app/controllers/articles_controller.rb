@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   skip_before_action :logged_in_user, only: [:index, :show]
   before_action :article_set, only:[:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+  before_action -> { authorize @article || Article }
 
   def index
     @articles = Article.all
@@ -58,6 +59,7 @@ class ArticlesController < ApplicationController
 
   private
   def handle_record_not_found
+    flash[:danger] = I18n.t 'article_not_found'
     redirect_to articles_path
   end
 

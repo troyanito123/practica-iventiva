@@ -19,12 +19,13 @@
           </small>
         </div>
 
-        <% if logged_in? %>
+        <% if logged_in? && current_user.admin?%>
           <div class="form-group">
-            <%= f.label 'Role: Default USER' %>
+            <%= f.label 'Role:' %>
             <% @roles.each do |role| %>
               <div class="form-check">
-                <%= f.radio_button :role, role.id, class: 'form-check-input', checked: role.code == 'USER' %>
+                <%= f.radio_button :role, role.id, class: 'form-check-input',
+                                   checked: role.code == 'USER'%>
                 <%= f.label :role, role.name, class: 'form-check-label' %>
               </div>
             <% end %>

@@ -19,7 +19,7 @@
           </small>
         </div>
 
-        <% if logged_in? %>
+        <% if logged_in? && current_user.admin?%>
           <div class="form-group">
             <%= f.label 'Role:' %>
             <% @roles.each do |role| %>

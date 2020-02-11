@@ -41,6 +41,7 @@ en:
   article_crated: "Article successfully created"
   article_updated: "Article successfully updated"
   article_deleted: "Article successfully deleted"
+  article_not_found: "Article not found"
 
   comment_created: "Comment has be send"
   comment_deleted: "Comment has be deleted"
@@ -48,3 +49,4 @@ en:
   not_current_user: "Only edit your own data!"
   user_update: "User updated!"
   user_delete: "User has been deleted"
+  user_not_found: "User not found"

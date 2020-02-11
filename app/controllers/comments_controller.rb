@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
 
   before_action :article_set, only:[:create, :destroy]
+  before_action :comment_set, only:[:destroy]
+  before_action -> { authorize @comment || Comment }
 
   def create
     @comment = Comment.new(comment_params)
@@ -16,7 +18,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @article.comments.find(params[:id])
     @comment.destroy
     flash[:danger] = I18n.t 'comment_deleted'
     redirect_to article_path(@article)
@@ -30,5 +31,10 @@ class CommentsController < ApplicationController
   private
   def article_set
     @article = Article.find(params[:article_id])
+  end
+
+  def comment_set
+    @comment = @article.comments.find(params[:id])
+    puts("OBJETO COMMENT: #{@comment }")
   end
 end
