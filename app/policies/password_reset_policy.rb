@@ -1,4 +1,4 @@
-class PasswordResetsPolicy < ApplicationPolicy
+class PasswordResetPolicy < ApplicationPolicy
   def new?
     user.nil?
   end

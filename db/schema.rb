@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_11_210902) do
+ActiveRecord::Schema.define(version: 2020_02_12_150659) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(version: 2020_02_11_210902) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "password_resets", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -46,11 +51,11 @@ ActiveRecord::Schema.define(version: 2020_02_11_210902) do
     t.string "password_digest"
     t.string "remember_digest"
     t.integer "role_id"
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
     t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
-    t.string "reset_digest"
-    t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
   end
