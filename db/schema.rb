@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_144608) do
+ActiveRecord::Schema.define(version: 2020_02_11_210902) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -46,6 +46,11 @@ ActiveRecord::Schema.define(version: 2020_02_10_144608) do
     t.string "password_digest"
     t.string "remember_digest"
     t.integer "role_id"
+    t.string "activation_digest"
+    t.boolean "activated", default: false
+    t.datetime "activated_at"
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
   end
