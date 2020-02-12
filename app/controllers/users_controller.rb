@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def update
-
+    @roles = Role.all
     @user.assign_attributes user_params
     if logged_in? && current_user.admin?
       @user.role = Role.find(params[:user][:role])
@@ -51,6 +51,7 @@ class UsersController < ApplicationController
       end
 
     else
+      puts(@user.errors.inspect)
       render :edit
     end
   end
@@ -63,7 +64,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
   end
 
   private

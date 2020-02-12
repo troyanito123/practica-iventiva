@@ -11,7 +11,7 @@
     </ul>
     <% if logged_in? %>
       <ul class="navbar-nav">
-        <% if policy(Article).new?%>
+        <% if policy(Article).new? %>
           <li class="nav-item">
             <%= link_to 'New Article', new_article_path, class: 'nav-link' %>
           </li>
@@ -24,16 +24,22 @@
         <% end %>
 
         <% if policy(User).new? %>
-        <li class="nav-item">
-          <%= link_to 'New user', register_path, class: 'nav-link' %>
-        </li>
-          <% end %>
+          <li class="nav-item">
+            <%= link_to 'New user', register_path, class: 'nav-link' %>
+          </li>
+        <% end %>
       </ul>
 
 
       <ul class="navbar-nav ml-auto ">
         <li class="nav-item dropdown">
+
           <a class="nav-link dropdown-toggle mr-5" href="#" data-toggle="dropdown">
+            <% if current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar.variant(resize: "40x40"), class: 'rounded-circle' %>
+            <% else %>
+              <%= image_tag "no-user.png", alt: "NO USER", size: "40", class: 'rounded-circle' %>
+            <% end %>
             <%= current_user.name %>
           </a>
           <div class="dropdown-menu mr-5">

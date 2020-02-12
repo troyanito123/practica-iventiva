@@ -6,6 +6,7 @@
 
         <table class="table">
           <thead>
+          <th>Avatar</th>
           <th>Name</th>
           <th>Email</th>
           <th>Role</th>
@@ -14,6 +15,13 @@
           <tbody>
           <% @users.each do |user| %>
             <tr>
+              <td>
+                <% if user.avatar.attached? %>
+                  <%= image_tag user.avatar.variant(resize: "40x40"), class: 'rounded-circle' %>
+                <% else %>
+                  <%= image_tag "no-user.png", alt: "NO USER", size: "40", class: 'rounded-circle' %>
+                <% end %>
+              </td>
               <td> <%= user.name %> </td>
               <td> <%= user.email %> </td>
               <% if user.role %>
@@ -26,7 +34,7 @@
                 <%= link_to 'Edit', edit_user_path(user) if policy(user).edit? %>
                 <%= link_to 'Delete', user_delete_path(user),
                             method: :delete,
-                            data: { confirm: 'Are you destroy this user?' }  %>
+                            data: {confirm: 'Are you destroy this user?'} %>
 
               </td>
             </tr>

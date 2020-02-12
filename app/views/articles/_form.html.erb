@@ -4,12 +4,12 @@
       <h1 class="text-center"> <%= title %> </h1>
       <hr>
 
-      <%= form_for(@article, local: true ) do |f| %>
+      <%= form_for(@article, local: true) do |f| %>
         <div class="form-group">
           <%= f.label 'Title:' %>
           <%= f.text_field :title, :autofocus => true, class: 'form-control shadow-sm border-0 bg-light' %>
           <small class="text-danger">
-            <%= @article.errors.messages[:title].first%>
+            <%= @article.errors.messages[:title].first %>
           </small>
         </div>
 
@@ -17,9 +17,16 @@
           <%= f.label 'Content:' %>
           <%= f.text_area :text, class: 'form-control shadow-sm border-0 bg-light' %>
           <small class="text-danger">
-            <%= @article.errors.messages[:text].first%>
+            <%= @article.errors.messages[:text].first %>
           </small>
         </div>
+
+        <div class="form-group">
+          <%= f.label 'Images' %>
+          <%= f.file_field :images, multiple: true %>
+          <small class="text-danger"> <%= @article.errors[:images].first %> </small>
+        </div>
+
 
         <div class="row">
           <div class="col">

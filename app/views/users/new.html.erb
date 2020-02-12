@@ -32,6 +32,14 @@
           </div>
         <% end %>
 
+        <% if logged_in? && current_user.admin?%>
+          <div class="form-group">
+            <%= f.label 'Avatar:' %>
+            <%= f.file_field :avatar %>
+            <small class="text-danger"> <%= @user.errors[:avatar].first %> </small>
+          </div>
+        <% end %>
+
         <div class="form-group">
           <%= f.label 'Password:' %>
           <%= f.password_field :password, class: 'form-control shadow-sm border-0 bg-light' %>

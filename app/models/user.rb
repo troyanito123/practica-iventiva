@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
   belongs_to :role
+  has_one_attached :avatar
 
   before_save { self.email = email.downcase }
 
@@ -18,6 +19,13 @@ class User < ApplicationRecord
   validates :email, presence: true, length: {maximum: 255},
             format: {with: VALID_EMAIL_REGEX},
             uniqueness: {case_sensitive: false}
+  validate :correct_avatar_mime_type
+
+  def correct_avatar_mime_type
+    if avatar.attached? && !avatar.content_type.start_with?('image')
+      errors.add(:avatar, "The file #{avatar.filename} must be a image")
+    end
+  end
 
   # Returns the hash digest of the given string.
   def User.digest(string)

@@ -5,11 +5,19 @@
         <h1 class="text-center"> <%= @article.title %></h1>
         <hr>
         <p> <%= @article.text %> </p>
+        <% @images.each do |image| %>
+          <% if image.variable? %>
+            <%= link_to image_tag(image.variant(resize: "200x200"), class: 'img-thumbnail shadow m-2'), image %>
+          <% else %>
+            <%= link_to (image.filename), image %>
+          <% end %>
+        <% end %>
       </div>
+
       <div class="bg-white shadow py-3 px-5 mt-3">
         <h1>Comments:</h1>
         <hr>
-        <%= render @comments%>
+        <%= render @comments %>
       </div>
 
       <div class="bg-white shadow pt-3 pb-4 px-5 mt-3">

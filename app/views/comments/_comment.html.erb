@@ -1,4 +1,9 @@
 <div class="bg-light px-3 py-1 mx-2 shadow mt-4">
+  <% if comment.user.avatar.attached? %>
+    <%= image_tag comment.user.avatar.variant(resize: "40x40"), class: 'rounded-circle' %>
+  <% else %>
+    <%= image_tag "no-user.png", alt: "NO USER", size: "40", class: 'rounded-circle' %>
+  <% end %>
   <strong class="mb-0"> <%= comment.user.name %> say: </strong>
   <p class="mb-0"> <%= comment.comment %> </p>
   <% if logged_in? %>
