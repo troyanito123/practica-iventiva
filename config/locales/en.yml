@@ -31,9 +31,6 @@
 
 en:
   hello: "Hello world"
-  messages:
-    errors:
-      title_not_blank: 'Titulo no puede ser blanco'
 
   login_error: "Email or password incorrect"
   login_success: "Great! now use your credential for login!"
@@ -52,3 +49,9 @@ en:
   user_update: "User updated!"
   user_delete: "User has been deleted"
   user_not_found: "User not found"
+
+  invalid_link_reset: "Link for reset password invalid!"
+  reset_expired: "This link for reset password was expired!"
+  reset_instructions: "Email sent with password reset instructions"
+  reset_password: "Password has been reset."
+  no_email: "Email address not found"

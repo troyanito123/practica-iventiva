@@ -10,15 +10,14 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-
     @user = User.find_by(email: params[:password_reset][:email].downcase)
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions"
+      flash[:info] = I18n.t 'reset_instructions'
       redirect_to login_path
     else
-      flash[:danger] = "Email address not found"
+      flash[:danger] = I18n.t 'no_email'
       render 'new'
     end
   end
@@ -27,14 +26,14 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    if params[:user][:password].empty?                  # Case (3)
+    if params[:user][:password].empty?
       @user.errors.add(:password, "can't be empty")
       render 'edit'
-    elsif @user.update_attributes(user_params)          # Case (4)
-      flash[:success] = "Password has been reset."
+    elsif @user.update_attributes(user_params)
+      flash[:success] = I18n.t 'reset_password'
       redirect_to login_path
     else
-      render 'edit'                                     # Case (2)
+      render 'edit'
     end
   end
 
@@ -48,17 +47,16 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by(email: params[:email])
   end
 
-  # Confirms a valid user.
   def valid_user
-    unless (@user)
+    unless (@user && @user.authenticated?(:reset, params[:id]))
+      flash[:danger] = I18n.t 'invalid_link_reset'
       redirect_to login_path
     end
   end
 
-  # Checks expiration of reset token.
   def check_expiration
     if @user.password_reset_expired?
-      flash[:danger] = "Password reset has expired."
+      flash[:danger] = I18n.t 'reset_expired'
       redirect_to new_password_reset_url
     end
   end
