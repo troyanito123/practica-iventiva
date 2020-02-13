@@ -1,8 +1,8 @@
-<%= form_with(model: [@article, @article.comments.build]) do |f| %>
+<%= form_with(model: [@article, @comment], remote: true) do |f| %>
 
   <div class="form-group">
     <%= f.label 'What do you think about this article?' %>
-    <%= f.text_area :comment, class: 'form-control bg-light shadow-sm border-0' %>
+    <%= f.text_area :comment, class: 'form-control bg-light shadow-sm border-0', id: 'comment_body' %>
   </div>
 
   <%= f.submit 'Send', class: 'btn btn-primary btn-block' %>

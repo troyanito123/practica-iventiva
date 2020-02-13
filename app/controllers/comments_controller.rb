@@ -10,15 +10,13 @@ class CommentsController < ApplicationController
     @comment.article = @article
 
     if @comment.save
-      flash[:success] = I18n.t 'comment_created'
-      redirect_to article_path @article
+      flash.now[:success] = I18n.t 'comment_created'
     else
       redirect_to articles_path
     end
   end
 
   def edit
-    puts("ARTICULO: #{@article}")
   end
 
   def update

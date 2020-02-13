@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
   def show
     @comments = @article.comments.order('created_at DESC')
     @images = @article.images
+    @comment = Comment.new
   end
 
   def new

@@ -28,21 +28,6 @@
           </small>
         </div>
 
-        <% if logged_in? && (current_user.admin? || current_user == @user) %>
-          <p>hola mundo</p>
-
-          <div class="input-group mb-3">
-            <div class="custom-file">
-              <%= f.label 'Avatar:', class: 'custom-file-label', for: 'input-file' %>
-              <%= f.file_field :avatar, class: 'custom-file-input', id: 'input-file' %>
-            </div>
-
-            <small class="text-danger d-block">
-              <%= @user.errors[:avatar].first %>
-            </small>
-          </div>
-        <% end %>
-
         <% if logged_in? && current_user.admin? %>
           <div class="form-group">
             <%= f.label 'Role:' %>
@@ -53,8 +38,15 @@
                 <%= f.label :role, role.name, class: 'form-check-label' %>
               </div>
             <% end %>
-
          </div>
+        <% end %>
+
+        <% if logged_in? && (current_user.admin? || current_user == @user) %>
+          <div class="form-group">
+            <%= f.label 'Avatar:' %>
+            <%= f.file_field :avatar %>
+            <small class="text-danger"> <%= @user.errors[:avatar].first %> </small>
+          </div>
         <% end %>
 
         <div class="form-group">
